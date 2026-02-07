@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Rose Day ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: radial-gradient(circle at top, #ff5f6d, #b31217);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.35);
+      padding: 35px;
+      border-radius: 25px;
+      max-width: 420px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 30px rgba(255, 0, 80, 0.6);
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .name {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #ffd1dc;
+      text-shadow: 0 0 15px #ff9aa2;
+    }
+
+    #message {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      margin-top: 20px;
+      min-height: 100px;
+    }
+
+    .date {
+      margin-top: 15px;
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 22px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      background: #ffccd5;
+      color: #8b0000;
+      font-weight: bold;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    /* 🌹 Falling roses */
+    .rose {
+      position: absolute;
+      top: -50px;
+      font-size: 24px;
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🎶 Music (add your own mp3 later if you want) -->
+  <audio id="music" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9f9c8b8c55.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- 🌹 Roses -->
+  <script>
+    for (let i = 0; i < 30; i++) {
+      const rose = document.createElement("div");
+      rose.className = "rose";
+      rose.innerHTML = "🌹";
+      rose.style.left = Math.random() * 100 + "vw";
+      rose.style.animationDuration = (5 + Math.random() * 5) + "s";
+      rose.style.fontSize = (20 + Math.random() * 20) + "px";
+      document.body.appendChild(rose);
+    }
+  </script>
+
+  <!-- 💖 Card -->
+  <div class="card">
+    <h1>Happy Rose Day</h1>
+    <div class="name">Roshni 🌹</div>
+
+    <div id="message"></div>
+
+    <button onclick="startSurprise()">Tap for a surprise 💌</button>
+
+    <div class="date">February 7</div>
+  </div>
+
+  <!-- ✨ Typing + Music Logic -->
+  <script>
+    const text = 
+`Like a rose, you bring warmth
+and beauty wherever you go.
+
+This isn’t just a page,
+it’s a small piece of my heart
+wrapped in code, just for you ❤️`;
+
+    let index = 0;
+
+    function startSurprise() {
+      document.getElementById("music").play();
+      document.querySelector("button").style.display = "none";
+      typeText();
+    }
+
+    function typeText() {
+      if (index < text.length) {
+        document.getElementById("message").innerHTML += 
+          text.charAt(index) === "\n" ? "<br>" : text.charAt(index);
+        index++;
+        setTimeout(typeText, 50);
+      }
+    }
+  </script>
+
+</body>
+</html>
